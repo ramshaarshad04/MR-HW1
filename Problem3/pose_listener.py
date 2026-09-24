@@ -9,8 +9,6 @@ from tf2_ros.transform_listener import TransformListener
 
 from turtlesim.srv import Spawn, TeleportAbsolute
 
-OFFSET = 5.544445
-
 
 def yaw_from_quat(q):
     return math.atan2(2.0 * (q.w * q.z + q.x * q.y),
@@ -55,8 +53,8 @@ class FrameListener(Node):
                         continue
 
                     request = TeleportAbsolute.Request()
-                    request.x = t.transform.translation.x + OFFSET
-                    request.y = t.transform.translation.y + OFFSET
+                    request.x = t.transform.translation.x 
+                    request.y = t.transform.translation.y 
                     request.theta = yaw_from_quat(t.transform.rotation)
                     self.teleporters[name].call_async(request)
             else:
